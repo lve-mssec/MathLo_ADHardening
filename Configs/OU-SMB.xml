@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ouTree>
+  <OU Class="SMB-ADMIN">
+    <ChildOU>
+      <Description>Comptes d'administration Tier 1 et Tier 2</Description>
+      <Name>Comptes Administration</Name>
+    </ChildOU>
+    <ChildOU>
+      <Description>Comptes d'administration Tier 0</Description>
+      <Name>Comptes Administration Tier0</Name>
+    </ChildOU>
+    <ChildOU>
+      <Description>Comptes de services</Description>
+      <Name>Comptes Services</Name>
+      <ChildOU>
+        <Description>Comptes de services synchronisés avec Azure AD</Description>
+        <Name>Synchronisation AAD</Name>
+      </ChildOU>
+      <ChildOU>
+        <Description>Objets désactivés</Description>
+        <Name>Désactivés</Name>
+      </ChildOU>
+    </ChildOU>
+    <ChildOU>
+      <Description>Comptes de services a haut privilèges</Description>
+      <Name>Comptes Services Tier0</Name>
+    </ChildOU>
+    <ChildOU>
+      <Description>Groupes d'administration Tier 1 et Tier 2</Description>
+      <Name>Groupes Administration</Name>
+      <ChildOU>
+        <Description>Groupes synchronisés avec Azure AD</Description>
+        <Name>Synchronisation AAD</Name>
+      </ChildOU>
+    </ChildOU>
+    <ChildOU>
+      <Description>Groupes d'administration Tier 0</Description>
+      <Name>Groupes Administration Tier0</Name>
+    </ChildOU>
+    <ChildOU>
+      <Description>Serveurs d'administration Tier 1 et Tier 2</Description>
+      <Name>Serveurs Administration</Name>
+    </ChildOU>
+    <ChildOU>
+      <Description>Serveurs d'administration Tier 0</Description>
+      <Name>Serveurs Administration Tier0</Name>
+    </ChildOU>
+  </OU>
+</ouTree>
