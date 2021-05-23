@@ -15,6 +15,7 @@
         Version....: 01.00.000 - 06/04/2021 - loic.veirman@mssec.fr - creation du script
         Version....: 01.01.000 - 14/05/2021 - loic.veirman@mssec.fr - Correction de bugs
         Version....: 01.01.001 - 15/05/2021 - loic.veirman@mssec.fr - Correction de bugs + refonte du jeu de GPO et de la table de traduction.
+        Version....: 01.01.001 - 23/05/2021 - loic.veirman@mssec.fr - Correction du bug 17
 
         ===============================
         Liste des Bugs :
@@ -35,6 +36,7 @@
         > BUG014: L'activation de la corbeille ne fonctionne pas sur 2012 R2 en Anglais (OS ou langue ?)....................TO DO
         > BUG015: La création des comptes SA ne fonctionne pas sur 2012 R2 en Anglais (OS ou langue ?)......................TO DO
         > BUG016: La création des comptes  A ne fonctionne pas sur 2012 R2 en Anglais (OS ou langue ?)......................TO DO
+        > BUG017: La tache planifiée de clean-up des groupes doit être reglé sur le niveau de l'OS l'exécutant..............OK (01.01.002)
 
         ===============================
         Futures implémentations :

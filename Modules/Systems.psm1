@@ -552,9 +552,11 @@ Function Set-DcSchedule
         .Notes
             Version: 01.00 -- Loic.veirman@mssec.fr
             Version: 01.01 -- Loic.veirman@mssec.fr
+            Version: 01.02 -- Loic.veirman@mssec.fr
             history: 
             > 01.00 : 21.04.21 - Script creation
-            > 01.00 : 14.05.21 - Modified ScTask creation and use a XML import
+            > 01.01 : 14.05.21 - Modified ScTask creation and use a XML import
+            > 01.02 : 23.05.21 - Modified xml import file to adapt to running os
     #>
 
     param(
@@ -614,9 +616,30 @@ Function Set-DcSchedule
             #                                   -Description "Retire les membres des groupes GRP_ADMIN_SERVEURS et GRP_ADMIN_STATIONS tous les dimanches a 23h." `
             #                                   -User "NT AUTHORITY\SYSTEM" -ErrorAction Stop
 
-            $install = Register-ScheduledTask -TaskPath "Flexsi" -TaskName "Purge groupes GRP_ADMIN_xxx" `
+            # Version 01.01
+            # $install = Register-ScheduledTask -TaskPath "Flexsi" -TaskName "Purge groupes GRP_ADMIN_xxx" `
+            #                                   -Xml (Get-Content '.\Inputs\Schedules\Purge groupes GRP_ADMIN_xxx.xml' | Out-String) `
+            #                                   -Force
+
+            $install = Register-ScheduledTask -TaskPath "AdHardening" -TaskName "Purge groupes GRP_ADMIN_xxx" `
                                               -Xml (Get-Content '.\Inputs\Schedules\Purge groupes GRP_ADMIN_xxx.xml' | Out-String) `
-                                              -Force
+                                              -Force 
+            # Compatibility Matrix
+            $OSVersion = (Get-CimInstance Win32_OperatingSystem).version
+            
+            Switch($OSVersion.Split('.')[0] + "." + $OSVersion.Split('.')[1])
+            {
+                '10.0' { $CompatMode = 'Win8' }
+                '6.3'  { $CompatMode = 'Win8' }
+                '6.2'  { $CompatMode = 'Win8' }
+                '6.1'  { $CompatMode = 'Win8' }
+                '6.0'  { $CompatMode = 'Vista' }
+                '5.2'  { $CompatMode = 'V1' }
+            }
+            # Setting Up the compatibility ScheduledTask
+            $taskSettings = New-ScheduledTaskSettingsSet -Compatibility $CompatMode
+            
+            $null = Set-ScheduledTask -TaskName 'AdHardening\Purge groupes GRP_ADMIN_xxx' -Settings $taskSettings -ErrorAction SilentlyContinue
 
             if ($install.State -eq "Ready") 
             { 
